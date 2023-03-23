@@ -1,14 +1,16 @@
 import java.util.UUID;
 
-public class PhysVol extends PhysDrive
+public class PhysVol extends LVM
 {
     private String name;
     private int size;
     private UUID id;
+    private PhysDrive assign;
 
-    public PhysVol(String name, int size)
+    public PhysVol(String name, int size, PhysDrive assign)
     {
         super(name, size);
+        this.assign = assign;
     }
 
     public String getName()
@@ -24,5 +26,10 @@ public class PhysVol extends PhysDrive
     public UUID getId()
     {
         return this.id;
+    }
+
+    public PhysDrive getAssignment()
+    {
+        return this.assign;
     }
 }

@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class PhysDrive
+public class PhysDrive extends LVM
 {
     private String name;
     private int size;
@@ -8,9 +8,7 @@ public class PhysDrive
 
     public PhysDrive(String name, int size)
     {
-        this.name = name;
-        this.size = size;
-        this.id = UUID.randomUUID();
+        super(name, size);
     }
 
     public String getName() 
