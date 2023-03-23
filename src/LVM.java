@@ -6,24 +6,30 @@ public class LVM
     private int size;
     private UUID id;
 
-    public LVM(String name, int size)
+    public LVM (String name, int size)
     {
         this.name = name;
         this.size = size;
         this.id = UUID.randomUUID();
     }
 
-    public String getName() 
+    public LVM (String name) //only use in VolGroup, need to find better solution
+    {
+        this.name = name;
+        this.id = UUID.randomUUID();
+    }
+
+    public String getName()
     {
         return this.name;
     }
 
-    public int getSize() 
+    public int getSize()
     {
         return this.size;
     }
 
-    public UUID getId() 
+    public UUID getId()
     {
         return this.id;
     }

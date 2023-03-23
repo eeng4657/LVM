@@ -1,26 +1,27 @@
-import java.util.UUID;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class VolGroup extends LVM
 {
-    private String name;
-    private int size;
-    private UUID id;
+    private ArrayList<PhysVol> pVolumes;
+    //private ArrayList<LogVol> lVolumes; uncomment when LogVol class is made
 
-    public VolGroup(String name, int size)
+    public VolGroup(String name)
     {
-        super(name, size);
+        super(name);
     }
 
-    public String getName() {
-        return this.name;
+    public void addPhysVol(PhysVol vol)
+    {
+        pVolumes.add(vol);
     }
 
-    public int getSize() {
-        return this.size;
-    }
-
-    public UUID getId() {
-        return this.id;
+    public int gotVolUsed() //get better solution for finding size of VG
+    {
+        int vol = 0;
+        for (int i = 0; i < pVolumes.size(); i++)
+        {
+            vol += pVolumes.get(i).getSize();
+        }
+        return vol;
     }
 }
