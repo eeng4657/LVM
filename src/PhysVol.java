@@ -1,9 +1,9 @@
 public class PhysVol extends LVM
 {
     private PhysDrive assign;
-    public PhysVol(String name, int size, PhysDrive assign)
+    public PhysVol(String name, PhysDrive assign)
     {
-        super(name, size);
+        super(name);
         this.assign = assign;
     }
 

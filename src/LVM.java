@@ -3,17 +3,9 @@ import java.util.UUID;
 public class LVM
 {
     private String name;
-    private int size;
     private UUID id;
 
-    public LVM (String name, int size)
-    {
-        this.name = name;
-        this.size = size;
-        this.id = UUID.randomUUID();
-    }
-
-    public LVM (String name) //only use in VolGroup, need to find better solution
+    public LVM (String name)
     {
         this.name = name;
         this.id = UUID.randomUUID();
@@ -22,11 +14,6 @@ public class LVM
     public String getName()
     {
         return this.name;
-    }
-
-    public int getSize()
-    {
-        return this.size;
     }
 
     public UUID getId()

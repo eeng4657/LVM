@@ -3,25 +3,49 @@ import java.util.ArrayList;
 public class VolGroup extends LVM
 {
     private ArrayList<PhysVol> pVolumes;
-    //private ArrayList<LogVol> lVolumes; uncomment when LogVol class is made
+    private int pSize;
+    private ArrayList<LogVol> lVolumes;
+    private int spaceTaken;
 
     public VolGroup(String name)
     {
         super(name);
     }
 
-    public void addPhysVol(PhysVol vol)
+    public void addPhysVol(PhysVol pVol)
     {
-        pVolumes.add(vol);
+        pVolumes.add(pVol);
     }
 
-    public int gotVolUsed() //get better solution for finding size of VG
+    public void addLogVol(LogVol lVol)
     {
-        int vol = 0;
+        lVolumes.add(lVol);
+    }
+
+    public int getPSize()
+    {
         for (int i = 0; i < pVolumes.size(); i++)
         {
-            vol += pVolumes.get(i).getSize();
+            pSize += pVolumes.get(i).getAssignment().getSize();
         }
-        return vol;
+        return pSize;
+    }
+
+    public int getSpaceTaken()
+    {
+        for (int i = 0; i < lVolumes.size(); i++)
+        {
+            spaceTaken += lVolumes.get(i).getSize();
+        }
+        return spaceTaken;
+    }
+
+    public boolean enoughSpace(LogVol lVol)
+    {
+        if ((getSpaceTaken() + lVol.getSize()) > getPSize())
+        {
+            return true;
+        }
+        else return false;
     }
 }
